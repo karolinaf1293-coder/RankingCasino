@@ -4,8 +4,8 @@ import type { View } from '../types';
 interface HeaderProps {
   setCurrentView: (view: View) => void;
   currentView: View;
-  isAdminMode: boolean;
-  onToggleAdminMode: () => void;
+  isAuthenticated: boolean;
+  onAdminClick: () => void;
 }
 
 const AdminIcon = () => (
@@ -14,7 +14,7 @@ const AdminIcon = () => (
     </svg>
 );
 
-const Header: React.FC<HeaderProps> = ({ setCurrentView, currentView, isAdminMode, onToggleAdminMode }) => {
+const Header: React.FC<HeaderProps> = ({ setCurrentView, currentView, isAuthenticated, onAdminClick }) => {
   const navItemClasses = "cursor-pointer px-4 py-2 rounded-md transition-colors duration-300";
   const activeClasses = "bg-yellow-500 text-gray-900 font-bold";
   const inactiveClasses = "hover:bg-gray-700";
@@ -45,9 +45,9 @@ const Header: React.FC<HeaderProps> = ({ setCurrentView, currentView, isAdminMod
             </div>
             <div className="ml-4">
               <button 
-                onClick={onToggleAdminMode} 
-                className={`p-2 rounded-full transition-colors duration-300 ${isAdminMode ? 'bg-yellow-500 text-gray-900' : 'text-gray-400 hover:text-white hover:bg-gray-700'}`}
-                aria-label="Toggle Admin Mode"
+                onClick={onAdminClick} 
+                className={`p-2 rounded-full transition-colors duration-300 ${isAuthenticated ? 'bg-yellow-500 text-gray-900' : 'text-gray-400 hover:text-white hover:bg-gray-700'}`}
+                aria-label="Admin Mode"
               >
                 <AdminIcon />
               </button>
